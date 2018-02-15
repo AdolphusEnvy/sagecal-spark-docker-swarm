@@ -18,11 +18,9 @@ docker logs -f hadoop_datanode.mdpzql2nkqyabgikmy2ks9vgg.sl8hoqhrwd10kgrvagm2aop
 # 17/09/25 08:06:19 WARN datanode.DataNode: Problem connecting to server: namenode:8020
 # Check the service name
 docker service ls
-# And restart the datanode service
-docker service update --force hadoop_datanode
 ```
 
 To deploy spark run:
 ```
-docker stack deploy -c docker-compose-spark.yml spark
+docker stack deploy -c spark-swarm.yml spark
 ```
