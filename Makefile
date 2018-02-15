@@ -3,14 +3,18 @@ networkpre:
 network:
 	docker network create -d overlay --attachable spark-net
 
-spark:
+start:
 	docker stack deploy -c spark-swarm.yml spark
 
-spark-scale:
+scale:
 	docker service scale spark_worker=4
 
-services:
-	docker stack deploy -c docker-compose-services.yml services
+info:
+	@echo
+	docker stack ls
+	@echo
+	@echo
+	docker stack services spark
 
 stop:
 	docker stack rm spark

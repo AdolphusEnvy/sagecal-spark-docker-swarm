@@ -2,8 +2,12 @@ version: '3'
 services:
 
   master:
-    image: fdiblen/spark-master:latest
+    image: fdiblen/spark-master-dirac
+    #image: fdiblen/spark-master
     hostname: sparkmaster
+    #volumes:
+    #  - /home/fdiblen/code/nlesc/projects/dirac/spark-archsci-images/spark-master-dirac/dirac:/opt/dirac_
+    #  - /home/fdiblen/code/nlesc/projects/dirac/spark-archsci-images/spark-master-dirac/dirac_bck:/opt/dirac_bck
     networks:
       spark-net:
         aliases:
@@ -19,11 +23,12 @@ services:
     ports:
       - "8080:8080"
       - "7077:7077"
-    env_file: 
+    env_file:
       - ./cluster.env
 
   worker:
-    image: fdiblen/spark-worker:latest
+    image: fdiblen/spark-worker-dirac
+    #image: fdiblen/spark-worker
     #hostname: sparkworker
     hostname: sparkworker{{.Task.Slot}}
     depends_on:
@@ -35,7 +40,7 @@ services:
     environment:
       - SPARK_MASTER=spark://sparkmaster:7077
     deploy:
-      replicas: 2
+      replicas: 4
       mode: replicated
       restart_policy:
         condition: on-failure
@@ -46,6 +51,38 @@ services:
       - "8081:8081"
     env_file:
       - ./cluster.env
+
+
+  hadoop:
+    image: fdiblen/hadoop
+    hostname: hadoop
+    networks:
+      spark-net:
+        aliases:
+          - hadoop
+    environment:
+      - IMAGE=hadoop
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 2
+        window: 120s
+    ports:
+      - "50070:50070"
+      - "50075:50075"
+      - "8088:8088"
+      - "9000:9000"
+      # - "50030:50030"
+      # - "9870:9870"
+      # - "50030:50030"
+      # - "50010:50010"
+      # - "50020:50020"
+      # - "50090:50090"
+    env_file:
+      - ./cluster.env
+
 
 networks:
   spark-net:
