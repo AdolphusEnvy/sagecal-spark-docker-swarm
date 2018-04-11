@@ -30,14 +30,13 @@ docker service scale spark_worker=4
 ```
 
 # Info about the services
-```
-docker stack ls
-```
+List the services:
 ```
 docker stack services spark
 ```
+List the tasks:
 ```
-docker service ls
+docker stack ps spark
 ```
 ```
 docker network inspect docker_gwbridge | egrep 'Name|IPv4>
@@ -57,5 +56,5 @@ docker logs -f container_name
 
 The container name can be found by
 ```
-docker ps
+docker stack ps spark
 ```
