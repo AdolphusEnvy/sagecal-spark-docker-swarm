@@ -29,20 +29,29 @@ foo@bar:~$ docker network create -d overlay --attachable spark-net
 ```
 If you get an warning about the existing ingress network, just ignore it.
 
-## 3 Create services
-To deploy Spark and Hadoop services run:
-```console
-foo@bar:~$ docker stack deploy --resolve-image always -c spark-swarm.yml spark
-```
-**Important note:** if the images are not pulled automatically, you can pull them yourself.
+## Pull the Docker images
+Sometimes the Docker images are not pulled automatically. It is better that you download them before deploying the services.
 ```console
 foo@bar:~$ docker pull fdiblen/spark-master-dirac && docker pull fdiblen/spark-worker-dirac && docker pull fdiblen/hadoop  
 ```
 
+## 4 Create services
+To deploy Spark and Hadoop services run:
+```console
+foo@bar:~$ docker stack deploy --resolve-image always -c spark-swarm.yml spark
+```
+Depending on your system or Docker version you may get an error. In this case try the following command:
+```console
+foo@bar:~$ docker stack deploy -c spark-swarm.yml spark
+```
+
+## Web interfaces
 You can now access to the web interface of the created services:
 
 Spark interface [http://0.0.0.0:8080/](http://0.0.0.0:8080)
+
 Hadoop interface [http://0.0.0.0:8088](http://0.0.0.0:8088)
+
 Hadoop datanodes [http://0.0.0.0:50070](http://0.0.0.0:50070)
 
 
