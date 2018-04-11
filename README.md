@@ -20,7 +20,7 @@ docker network create -d overlay --attachable spark-net
 ## 3 Create services
 To deploy Spark and Hadoop services run:
 ```
-docker stack deploy -c spark-swarm.yml spark
+docker stack deploy --resolve-image always -c spark-swarm.yml spark
 ```
 
 # Scaling the services
