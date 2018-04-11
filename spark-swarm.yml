@@ -3,11 +3,7 @@ services:
 
   master:
     image: fdiblen/spark-master-dirac
-    #image: fdiblen/spark-master
     hostname: sparkmaster
-    #volumes:
-    #  - /home/fdiblen/code/nlesc/projects/dirac/spark-archsci-images/spark-master-dirac/dirac:/opt/dirac_
-    #  - /home/fdiblen/code/nlesc/projects/dirac/spark-archsci-images/spark-master-dirac/dirac_bck:/opt/dirac_bck
     networks:
       spark-net:
         aliases:
@@ -26,10 +22,9 @@ services:
     env_file:
       - ./cluster.env
 
+
   worker:
     image: fdiblen/spark-worker-dirac
-    #image: fdiblen/spark-worker
-    #hostname: sparkworker
     hostname: sparkworker{{.Task.Slot}}
     depends_on:
       - master
