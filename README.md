@@ -48,12 +48,11 @@ foo@bar:~$ docker stack deploy -c spark-swarm.yml spark
 ## 5 Web interfaces
 You can now access to the web interface of the created services:
 
-Spark interface [http://0.0.0.0:8080/](http://0.0.0.0:8080){:target="_blank"}
+Spark interface [http://0.0.0.0:8080/](http://0.0.0.0:8080)
 
-Hadoop interface [http://0.0.0.0:8088](http://0.0.0.0:8088){:target="_blank"}
+Hadoop interface [http://0.0.0.0:8088](http://0.0.0.0:8088)
 
-Hadoop datanodes [http://0.0.0.0:50070](http://0.0.0.0:50070){:target="_blank"}
-
+Hadoop datanodes [http://0.0.0.0:50070](http://0.0.0.0:50070)
 
 
 # Scaling the services
