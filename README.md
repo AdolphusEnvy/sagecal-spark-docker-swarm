@@ -22,6 +22,10 @@ To deploy Spark and Hadoop services run:
 ```
 docker stack deploy --resolve-image always -c spark-swarm.yml spark
 ```
+**Important note:** if the images are not pulled automatically, you can pull them yourself.
+```
+docker pull fdiblen/spark-master-dirac && git pull fdiblen/spark-worker-dirac && git pull fdiblen/hadoop 
+```
 
 # Scaling the services
 Number of available Spark workers can easily be scaled up/down. In order to have 4 Spark worker nodes run:
