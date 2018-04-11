@@ -39,6 +39,14 @@ foo@bar:~$ docker stack deploy --resolve-image always -c spark-swarm.yml spark
 foo@bar:~$ docker pull fdiblen/spark-master-dirac && docker pull fdiblen/spark-worker-dirac && docker pull fdiblen/hadoop  
 ```
 
+You can now access to the web interface of the created services:
+
+Spark interface [http://0.0.0.0:8080/](http://0.0.0.0:8080)
+Hadoop interface [http://0.0.0.0:8088](http://0.0.0.0:8088)
+Hadoop datanodes [http://0.0.0.0:50070](http://0.0.0.0:50070)
+
+
+
 # Scaling the services
 Number of available Spark workers can easily be scaled up/down. In order to have 4 Spark worker nodes run:
 ```console
