@@ -21,6 +21,8 @@ services:
       - "7077:7077"
     env_file:
       - ./cluster.env
+    volumes:
+      - "/home/fdiblen/nlesc/projects/dirac/excon_hdfs:/opt/dirac/excon_hdfs"
 
 
   worker:
@@ -46,6 +48,8 @@ services:
       - "8081:8081"
     env_file:
       - ./cluster.env
+    volumes:
+      - "/home/fdiblen/nlesc/projects/dirac/excon_hdfs:/opt/dirac/excon_hdfs"
 
 
   hadoop:
@@ -69,6 +73,7 @@ services:
       - "50075:50075"
       - "8088:8088"
       - "9000:9000"
+      - "8020:8020"
       # - "50030:50030"
       # - "9870:9870"
       # - "50030:50030"
@@ -81,4 +86,5 @@ services:
 
 networks:
   spark-net:
+    # driver: "bridge"
     external: true
