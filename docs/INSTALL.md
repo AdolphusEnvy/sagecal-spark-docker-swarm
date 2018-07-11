@@ -39,7 +39,7 @@ foo@bar:~$ docker pull fdiblen/spark-master-dirac && docker pull fdiblen/spark-w
 ## 4 Create services
 To deploy Spark and Hadoop services run:
 ```console
-foo@bar:~$ docker stack deploy --resolve-image always -c spark-swarm.yml spark
+foo@bar:~$ docker stack deploy --resolve-image always -c docker-compose.yml spark
 ```
 Depending on your system or Docker version you may get an error. In this case try the following command:
 ```console
@@ -75,10 +75,23 @@ foo@bar:~$ docker stack ps spark
 foo@bar:~$ docker network inspect docker_gwbridge | egrep 'Name|IPv4>
 ```
 
+
+docker stack services spark
+docker service inspect --pretty  spark_master
+docker service inspect --pretty  spark_worker
+docker service ps spark_master
+docker service ps spark_worker
+docker service ps spark_hadoop
+
 # Stopping the services
 ```console
 foo@bar:~$ docker stack rm spark
 ```
+
+# Clean up containers
+
+docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+
 
 # Debugging
 
@@ -91,3 +104,17 @@ The container name can be found by
 ```console
 foo@bar:~$ docker stack ps spark
 ```
+
+
+# HDFS
+
+## connect
+
+docker exec -ti $(docker ps -a | grep hadoop | awk '{print $1}') /bin/bash
+
+## check configuration 
+export HADOOP_CLASSPATH=$(/opt/soft/hadoop/bin/hadoop classpath)
+export PATH=$PATH:/opt/soft/hadoop/bin
+
+hdfs dfsadmin -report
+hdfs dfsadmin -printTopology
