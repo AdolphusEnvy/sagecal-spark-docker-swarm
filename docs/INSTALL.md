@@ -63,6 +63,7 @@ foo@bar:~$ docker service scale spark_worker=4
 ```
 
 # Info about the services
+
 List the services:
 ```console
 foo@bar:~$ docker stack services spark
@@ -82,6 +83,7 @@ docker service inspect --pretty  spark_worker
 docker service ps spark_master
 docker service ps spark_worker
 docker service ps spark_hadoop
+
 
 # Stopping the services
 ```console
@@ -108,13 +110,21 @@ foo@bar:~$ docker stack ps spark
 
 # HDFS
 
+
 ## connect
 
 docker exec -ti $(docker ps -a | grep hadoop | awk '{print $1}') /bin/bash
 
 ## check configuration 
+
+```
 export HADOOP_CLASSPATH=$(/opt/soft/hadoop/bin/hadoop classpath)
 export PATH=$PATH:/opt/soft/hadoop/bin
 
 hdfs dfsadmin -report
 hdfs dfsadmin -printTopology
+
+hdfs getconf -confKey fs.defaultFS
+hdfs getconf -namenodes
+hdfs  dfsadmin -getDatanodeInfo hdfs://localhost:50020/
+```

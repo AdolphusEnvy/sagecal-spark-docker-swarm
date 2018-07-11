@@ -1,12 +1,18 @@
 # Submitting Spark jobs (WIP)
 
 # Usage
-## 1 Accessing to the Spark master 
+## 1 Accessing to nodes
 
 You can start a shell session on the master node by running
 ```console
 foo@bar:~$ docker exec -ti $(docker ps -a | grep spark-master | awk '{print $1}') /bin/bash
 ```
+In order to access to hadoop node
+```console
+foo@bar:~$ docker exec -ti $(docker ps -a | grep hadoop | awk '{print $1}') /bin/bash
+```
+
+
 
 ## Submitting a job
 
