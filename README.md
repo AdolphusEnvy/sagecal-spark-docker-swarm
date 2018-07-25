@@ -1,4 +1,9 @@
-# Spark and Hadoop in Docker Swarm
+# SageCal on Apache Spark (WIP)
+
+## About
+
+The Docker swarm cluster with Apache Spark and HDFS filesystem to run [SageCal](https://github.com/nlesc-dirac/sagecal). The setup uses [Docker images](https://github.com/nlesc-dirac/spark-archsci-images) to build scaleble cluster.
+
 
 ## Included Software
 | Name    | Version   |
