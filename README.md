@@ -8,21 +8,21 @@ The Docker swarm cluster with Apache Spark and HDFS filesystem to run [SageCal](
 ## Included Software
 | Name    | Version   |
 | ------- | --------- |
-| Hadoop  | 2.9       |
+| Minio   |           |
 | Spark   | 2.2.0     |
 | java    | OpenJDK-8 |
 | SageCal | -         |
 
 **Note:** The setup was only tested on Linux64 system.
 
-## Docker images []()
+## Docker images
 
 docker pull fdiblen/spark-worker-dirac
 docker pull fdiblen/spark-master-dirac
-docker pull fdiblen/hadoop
+
 
 ## Instructions
 
-Intallation instructions [INSTALL.md](docs/INSTALL.md)
+Intallation instructions [SETUP.md](docs/SETUP.md)
 
 Instructions to submit a job [JOBS.md](docs/JOBS.md)
