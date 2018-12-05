@@ -25,10 +25,8 @@ Your system will be the Swarm manager node. Take a note of the **token** generat
 
 ## 2-Create an overlay and cluster networks
 ```console
-foo@bar:~$ docker network create --ingress --driver overlay ingress
-foo@bar:~$ docker network create -d overlay --attachable spark-net
+foo@bar:~$ docker network create --opt encrypted --driver overlay --attachable dirac_distributed
 ```
-If you get an warning about the existing ingress network, just ignore it.
 
 
 ## 3-Pull the Docker images
@@ -52,9 +50,9 @@ foo@bar:~$ docker stack deploy --compose-file=minio-swarm.yaml minio
 ```
 Keys used in the setup are shown below:
 
-access key : T615EUK8GNG353JSM3ZH
+access key : nlesc
 
-secret key: uahJv4pzsRogtayBvPKUXVOLV1WScw7p4gfjsBtK
+secret key: dirac
 
 **Important Note:** Minio secret keys and access keys are stored in `minio-swarm.yaml` and should be changed in production environment.
 
@@ -75,7 +73,7 @@ foo@bar:~$ docker stack deploy --compose-file=spark-swarm.yml spark
 ```console
 foo@bar:~$ docker stack deploy --compose-file=vis.yml vis
 ```
-
+**Important Note:** Authentication of the UI is disabled. This should be change in production environment.
 
 
 ## 5-Web interfaces
