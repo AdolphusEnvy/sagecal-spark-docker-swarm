@@ -3,6 +3,9 @@ version: '3'
 services:
   portainer:
     image: portainer/portainer
+    hostname: "{{.Service.Name}}-{{.Task.Slot}}"
+    networks:
+      - dirac_distributed
     ports:
       - "3000:9000"
     command: -H unix:///var/run/docker.sock --no-auth
@@ -12,3 +15,13 @@ services:
 
 volumes:
   portainer_data:
+
+#networks:
+# dirac_distributed:
+#  driver: overlay
+    # external: true
+
+networks:
+  dirac_distributed:
+    external: 
+      name: dirac_distributed
