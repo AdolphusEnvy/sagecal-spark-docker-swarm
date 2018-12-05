@@ -11,7 +11,7 @@ echo 'IP Addresses'
 # do
 #     docker service ps $service -q --filter "desired-state=Running" | xargs docker inspect --format '{{range .NetworksAttachments}}{{.Addresses}}{{end}}';
 # done
-docker inspect -f 'table {{.Name}}  {{range .NetworkSettings.Networks}} {{.IPAddress}}{{end}}' $(docker ps -aq)
+docker inspect -f '{{.Name}}  {{range .NetworkSettings.Networks}} {{.IPAddress}}{{end}}' $(docker ps -aq)
 
 
 echo '------------------------------------------------------------------------------------'
